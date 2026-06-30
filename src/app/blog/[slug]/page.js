@@ -92,7 +92,7 @@ export default async function BlogPostPage({ params }) {
         {/* Hero image — featured_image OR first uploaded content image */}
         {heroImage && (
           <div style={{maxWidth:'960px',margin:'0 auto',padding:'0 24px'}}>
-            <img src={heroImage} alt={heroAlt} style={{width:'100%',aspectRatio:'16/7',objectFit:'cover',display:'block',border:'1px solid var(--border)',borderTop:'none'}} />
+            <img src={heroImage} alt={heroAlt} style={{width:'100%',aspectRatio:'16/7',objectFit:'cover',objectPosition:'top',display:'block',border:'1px solid var(--border)',borderTop:'none'}} />
           </div>
         )}
 
