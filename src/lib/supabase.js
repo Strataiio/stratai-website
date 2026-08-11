@@ -32,10 +32,7 @@ export async function getPost(slug) {
   return data
 }
 export async function getAllPostSlugs() {
-  const { data } = await supabase
-    .from('v_published_posts')
-    .select('slug')
-
+  const { data } = await supabase.from('posts').select('slug').eq('status', 'published')
   return (data ?? []).map(p => ({ slug: p.slug }))
 }
 
