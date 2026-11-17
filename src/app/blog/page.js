@@ -32,15 +32,18 @@ export default async function BlogPage({ searchParams }) {
         ):(
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(340px,1fr))', gap:'1px', background:'var(--border)', marginBottom:'40px' }}>
             {posts.map((post,i)=>(
-              <Link key={post.id} href={`/blog/${post.slug}`} style={{ display:'block', background:'var(--bg)', padding:'32px', textDecoration:'none', color:'inherit', position:'relative' }}>
+              <Link key={post.id} href={`/blog/${post.slug}`} style={{ display:'block', background:'var(--bg)', textDecoration:'none', color:'inherit', position:'relative' }}>
                 <div style={{ position:'absolute', top:0, left:0, width:'3px', height:'100%', background:i===0?'var(--orange)':'transparent' }} />
-                {post.category_name&&<div style={{ fontFamily:'var(--font-mono)', fontSize:'10px', color:'var(--orange)', letterSpacing:'0.1em', fontWeight:600, marginBottom:'12px' }}>{post.category_name.toUpperCase()}</div>}
-                <h2 style={{ fontFamily:'var(--font-display)', fontSize:'clamp(17px,2vw,22px)', fontWeight:600, letterSpacing:'-0.03em', lineHeight:1.2, marginBottom:'12px', color:'var(--text)' }}>{post.title}</h2>
-                {post.excerpt&&<p style={{ fontSize:'14px', color:'var(--text2)', lineHeight:'1.6', marginBottom:'18px' }}>{post.excerpt.slice(0,110)}{post.excerpt.length>110?'…':''}</p>}
-                <div style={{ display:'flex', gap:'14px', flexWrap:'wrap', fontFamily:'var(--font-mono)', fontSize:'10px', color:'var(--text3)', letterSpacing:'0.05em' }}>
-                  {post.author_name&&<span>{post.author_name.toUpperCase()}</span>}
-                  {post.published_at&&<span>{new Date(post.published_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}).toUpperCase()}</span>}
-                  {post.read_time_minutes&&<span>{post.read_time_minutes} MIN READ</span>}
+                {post.featured_image_public_url&&<img src={post.featured_image_public_url} alt={post.title} style={{ width:'100%', aspectRatio:'1896/830', objectFit:'cover', display:'block' }} />}
+                <div style={{ padding:'32px' }}>
+                  {post.category_name&&<div style={{ fontFamily:'var(--font-mono)', fontSize:'10px', color:'var(--orange)', letterSpacing:'0.1em', fontWeight:600, marginBottom:'12px' }}>{post.category_name.toUpperCase()}</div>}
+                  <h2 style={{ fontFamily:'var(--font-display)', fontSize:'clamp(17px,2vw,22px)', fontWeight:600, letterSpacing:'-0.03em', lineHeight:1.2, marginBottom:'12px', color:'var(--text)' }}>{post.title}</h2>
+                  {post.excerpt&&<p style={{ fontSize:'14px', color:'var(--text2)', lineHeight:'1.6', marginBottom:'18px' }}>{post.excerpt.slice(0,110)}{post.excerpt.length>110?'…':''}</p>}
+                  <div style={{ display:'flex', gap:'14px', flexWrap:'wrap', fontFamily:'var(--font-mono)', fontSize:'10px', color:'var(--text3)', letterSpacing:'0.05em' }}>
+                    {post.author_name&&<span>{post.author_name.toUpperCase()}</span>}
+                    {post.published_at&&<span>{new Date(post.published_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}).toUpperCase()}</span>}
+                    {post.read_time_minutes&&<span>{post.read_time_minutes} MIN READ</span>}
+                  </div>
                 </div>
               </Link>
             ))}
